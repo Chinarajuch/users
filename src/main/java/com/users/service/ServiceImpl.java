@@ -40,7 +40,7 @@ public class ServiceImpl implements ServiceInter {
 		UserRegister save = userRepo.save(us);
 		UserResponse response=new UserResponse();
 		BeanUtils.copyProperties(us, response);
-		String url="http://localhost:8080/active/"+save.getUserId()+"/Active";
+		String url="15.207.14.133:8080/active/"+save.getUserId()+"/Active";
 		String mailBody = emailUtils.createMailBody(userRequest.getUserFullName(),"temporary password is:"+save.getUserPassword(),url,"active your account :");
 		try {
 		emailUtils.sendMail(save.getUserEmailId(),"Registration Successful", mailBody);
@@ -153,7 +153,7 @@ public class ServiceImpl implements ServiceInter {
 		if(byUserEmailId.isPresent())
 		{
 			UserRegister userRegister = byUserEmailId.get();
-			String url="http://localhost:8080/login";
+			String url="15.207.14.133:8080/login";
 			String mailBody = emailUtils.createMailBody(userRegister.getUserFullName(),"Recover password is:"+userRegister.getUserPassword(),url,"Login your account :");
 			try {
 			emailUtils.sendMail(email,"Recovery Password", mailBody);
